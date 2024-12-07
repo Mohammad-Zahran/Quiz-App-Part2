@@ -2,6 +2,7 @@ import express from "express";
 import connectToDatabase from "./db/connection.js";
 import authRoutes from "./routes/auth.routes.js";
 
+
 const app = express();
 
 app.use(express.json());
