@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-import './style.css';
+import React, { useState } from "react";
+import axios from "axios";
+import "./style.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -15,10 +19,27 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
-    // Add logic to send form data to the backend
+    setError("");
+    setSuccess("");
+
+    try {
+      const response = await axios(
+        "http://127.0.0.1:8080/auth/register",
+        formData
+      );
+      setSuccess("Registration successful!");
+      console.log("Response", response.data);
+    } catch (err) {
+      console.error(
+        "Error:",
+        err.response?.data?.message || "Something went wrong"
+      );
+      setError(
+        err.response?.data?.message || "Registration failed. Please try again."
+      );
+    }
   };
 
   return (
@@ -64,7 +85,12 @@ const Register = () => {
           />
         </div>
 
-        <button type="submit" className="btn">Register</button>
+        {error && <p className="error-message">{error}</p>}
+        {success && <p className="success-message">{success}</p>}
+
+        <button type="submit" className="btn">
+          Register
+        </button>
       </form>
     </div>
   );
