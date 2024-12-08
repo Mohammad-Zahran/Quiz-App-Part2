@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 
@@ -11,6 +12,7 @@ const Register = () => {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({
@@ -25,12 +27,9 @@ const Register = () => {
     setSuccess("");
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8080/auth/register",
-        formData
-      );
+      await axios.post("http://127.0.0.1:8080/auth/register", formData);
       setSuccess("Registration successful!");
-      console.log("Response:", response.data);
+      setTimeout(() => navigate("/login"), 2000); // Redirect to login after 2 seconds
     } catch (err) {
       console.error(
         "Error:",
@@ -92,6 +91,10 @@ const Register = () => {
           Register
         </button>
       </form>
+
+      <p className="have-account">
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
     </div>
   );
 };
