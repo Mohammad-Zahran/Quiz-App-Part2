@@ -25,12 +25,12 @@ const Register = () => {
     setSuccess("");
 
     try {
-      const response = await axios(
+      const response = await axios.post(
         "http://127.0.0.1:8080/auth/register",
         formData
       );
       setSuccess("Registration successful!");
-      console.log("Response", response.data);
+      console.log("Response:", response.data);
     } catch (err) {
       console.error(
         "Error:",
