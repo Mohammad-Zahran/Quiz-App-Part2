@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Register.css';
+import './style.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
-    // Here, send the formData to the backend
+    // Add logic to send form data to the backend
   };
 
   return (
