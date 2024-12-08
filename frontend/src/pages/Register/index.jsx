@@ -1,24 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react';
+import './Register.css';
 
 const Register = () => {
-  return (
-    <div className='register-container'>
-        <h2>Create Your Account</h2>
-        <form className='register-form' onSubmit={handleSubmit}>
-            <div className='form-group'>
-                <label htmlFor="username">Username</label>
-                <input
-                type="text"
-                id='username'
-                name='username'
-                value={FormData.username}
-                onChange={handleChange}
-                placeholder='Enter your username'
-                required
-                />
-            </div>
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
 
-            <div className="form-group">
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form Data:', formData);
+    // Here, send the formData to the backend
+  };
+
+  return (
+    <div className="register-container">
+      <h2>Create Your Account</h2>
+      <form className="register-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            placeholder="Enter your username"
+            required
+          />
+        </div>
+
+        <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -44,10 +64,10 @@ const Register = () => {
           />
         </div>
 
-
-        </form>
+        <button type="submit" className="btn">Register</button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
