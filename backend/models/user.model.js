@@ -1,6 +1,5 @@
 import {Schema, model} from "mongoose";
 
-
 const questionSchema = new Schema({
     question: {
         type: String,
@@ -43,7 +42,6 @@ const userSchema = new Schema({
 });
 
 export const User = model("User", userSchema);
-export const Question = model("Question", questionSchema);
-export const Quiz = model("Quiz", quizSchema);
+
 
 
