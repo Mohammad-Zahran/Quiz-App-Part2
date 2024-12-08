@@ -20,6 +20,12 @@ const questionSchema = new Schema({
     }
 });
 
+const quizSchema = new Schema({
+    title: {type: String, required: true},
+    questions: [questionSchema],
+    createdAt: {type: Date, default: Date.now},
+});
+
 const userSchema = new Schema({
     username: {
         type: String,
@@ -33,8 +39,11 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    quizzes: [quizSchema],
 });
 
 export const User = model("User", userSchema);
 export const Question = model("Question", questionSchema);
+export const Quiz = model("Quiz", quizSchema);
+
 
