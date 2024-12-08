@@ -59,4 +59,23 @@
     border-color: #00ff99;
     box-shadow: 0 0 5px rgba(0, 255, 153, 0.5);
   }
+
+  .register-form .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #111;
+    background-color: #00ff99;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+  
+  .register-form .btn:hover {
+    background-color: #00cc77;
+    transform: scale(1.05);
+  }
   
